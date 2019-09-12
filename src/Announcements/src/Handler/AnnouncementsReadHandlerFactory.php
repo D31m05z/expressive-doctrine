@@ -13,6 +13,6 @@ class AnnouncementsReadHandlerFactory
     {
         $entityManager = $container->get(EntityManager::class);
 
-        return new AnnouncementsReadHandler($entityManager);
+        return new AnnouncementsReadHandler($entityManager, $container->get('config')['page_size']);
     }
 }

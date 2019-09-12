@@ -15,10 +15,12 @@ use Zend\Diactoros\Response\JsonResponse;
 class AnnouncementsReadHandler implements RequestHandlerInterface
 {
     protected $entityManager;
+    protected $pageSize;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, $pageSize)
     {
         $this->entityManager = $entityManager;
+        $this->pageSize = $pageSize;
     }
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
@@ -29,10 +31,19 @@ class AnnouncementsReadHandler implements RequestHandlerInterface
 
         $paginator = new Paginator($query);
 
+        $totalItems = count($paginator);
+        $currentPage = ($request->getAttribute('page')) ?: 1;
+        $totalPageCount = ceil($totalItems / $this->pageSize);
+        $nextPage = (($currentPage < $totalPageCount) ? $currentPage + 1 : $totalPageCount);
+        $previousPage = (($currentPage > 1) ? $currentPage - 1 : 1);
+
         $records = $paginator
             ->getQuery()
+            ->setFirstResult($this->pageSize * ($currentPage - 1))
+            ->setMaxResults($this->pageSize)
             ->getResult(Query::HYDRATE_ARRAY);
 
-        return new JsonResponse($records);
+        $result['_embedded']['Announcements'] = $records;
+        return new JsonResponse($result);
     }
 }

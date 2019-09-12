@@ -22,7 +22,7 @@ class RoutesDelegator
 
         // Setup routes:
 //        $app->post('/announcements[/]', Handler\AnnouncementsCreateHandler::class, 'announcements.create');
-        $app->get('/announcements[/]', Handler\AnnouncementsReadHandler::class, 'announcements.read');
+        $app->get('/announcements/[page/{page:\d+}]', Handler\AnnouncementsReadHandler::class, 'announcements.read');
 
         return $app;
     }
