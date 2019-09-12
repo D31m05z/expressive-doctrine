@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace Announcements;
 
+use Announcements\Entity\Announcement;
+use Announcements\Entity\AnnouncementCollection;
 use ContainerInteropDoctrine\EntityManagerFactory;
 use Doctrine\ORM\EntityManager;
 use Zend\Expressive\Application;
+use Zend\Expressive\Hal\Metadata\MetadataMap;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Zend\Expressive\Hal\Metadata\RouteBasedCollectionMetadata;
+use Zend\Expressive\Hal\Metadata\RouteBasedResourceMetadata;
+use Zend\Hydrator\ReflectionHydrator;
 
 /**
  * The configuration provider for the Announcements module
@@ -29,6 +35,7 @@ class ConfigProvider
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
             'doctrine'     => $this->getDoctrineEntities(),
+            MetadataMap::class => $this->getHalMetadataMap(),
         ];
     }
 
@@ -79,6 +86,24 @@ class ConfigProvider
                     'cache' => 'array',
                     'paths' => [__DIR__ . '/Entity'],
                 ],
+            ],
+        ];
+    }
+
+    public function getHalMetadataMap()
+    {
+        return [
+            [
+                '__class__' => RouteBasedResourceMetadata::class,
+                'resource_class' => Announcement::class,
+                'route' => 'announcements.view',
+                'extractor' => ReflectionHydrator::class,
+            ],
+            [
+                '__class__' => RouteBasedCollectionMetadata::class,
+                'collection_class' => AnnouncementCollection::class,
+                'collection_relation' => 'announcement',
+                'route' => 'announcements.read',
             ],
         ];
     }

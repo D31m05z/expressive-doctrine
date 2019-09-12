@@ -27,7 +27,7 @@ class RoutesDelegator
         $app->get('/announcements/{id:\d+}[/]',
             Handler\AnnouncementsViewHandler::class, 'announcements.view');
 
-        $app->get('/announcements/[page/{page:\d+}]',
+        $app->get('/announcements/[?page={page:\d+}]',
             Handler\AnnouncementsReadHandler::class, 'announcements.read');
 
         $app->put('/announcements/{id:\d+}[/]',

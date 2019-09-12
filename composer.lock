@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f16773bb5ce0fba5218b82a0f322a656",
+    "content-hash": "bec2c36683dfece0aa4b693fec718289",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1304,6 +1304,55 @@
             "time": "2018-10-30T17:12:04+00:00"
         },
         {
+            "name": "psr/link",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/link.git",
+                "reference": "eea8e8662d5cd3ae4517c9b864493f59fca95562"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/link/zipball/eea8e8662d5cd3ae4517c9b864493f59fca95562",
+                "reference": "eea8e8662d5cd3ae4517c9b864493f59fca95562",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Link\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for HTTP links",
+            "keywords": [
+                "http",
+                "http-link",
+                "link",
+                "psr",
+                "psr-13",
+                "rest"
+            ],
+            "time": "2016-10-28T16:06:13+00:00"
+        },
+        {
             "name": "symfony/console",
             "version": "v4.3.4",
             "source": {
@@ -1552,6 +1601,58 @@
                 "standards"
             ],
             "time": "2019-08-20T14:44:19+00:00"
+        },
+        {
+            "name": "willdurand/negotiation",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/Negotiation.git",
+                "reference": "03436ededa67c6e83b9b12defac15384cb399dc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/03436ededa67c6e83b9b12defac15384cb399dc9",
+                "reference": "03436ededa67c6e83b9b12defac15384cb399dc9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Negotiation\\": "src/Negotiation"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "will+git@drnd.me"
+                }
+            ],
+            "description": "Content Negotiation tools for PHP provided as a standalone library.",
+            "homepage": "http://williamdurand.fr/Negotiation/",
+            "keywords": [
+                "accept",
+                "content",
+                "format",
+                "header",
+                "negotiation"
+            ],
+            "time": "2017-05-14T17:21:12+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",
@@ -1931,6 +2032,78 @@
             "time": "2019-06-20T13:58:31+00:00"
         },
         {
+            "name": "zendframework/zend-expressive-hal",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-expressive-hal.git",
+                "reference": "5b523673bf488a3e5d4810e56c747b15eba80756"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-expressive-hal/zipball/5b523673bf488a3e5d4810e56c747b15eba80756",
+                "reference": "5b523673bf488a3e5d4810e56c747b15eba80756",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/http-message": "^1.0.1",
+                "psr/link": "^1.0",
+                "willdurand/negotiation": "^2.3.1"
+            },
+            "provide": {
+                "psr/link-implementation": "1.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.6",
+                "phpunit/phpunit": "^7.0.1",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-expressive-helpers": "^5.0.0alpha3",
+                "zendframework/zend-hydrator": "^2.3.1 || ^3.0",
+                "zendframework/zend-paginator": "^2.7"
+            },
+            "suggest": {
+                "psr/container-implementation": "^1.0 in order to use the provided PSR-11 factories",
+                "zendframework/zend-expressive-helpers": "^5.0 in order to use UrlHelper/ServerUrlHelper-based ExpressiveUrlGenerator with the LinkGenerator",
+                "zendframework/zend-hydrator": "^2.3.1 in order to use the ResourceGenerator to create Resource instances from objects",
+                "zendframework/zend-paginator": "^2.7 in order to provide paginated collections"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev",
+                    "dev-develop": "1.4.x-dev"
+                },
+                "zf": {
+                    "config-provider": "Zend\\Expressive\\Hal\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Expressive\\Hal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Hypertext Application Language implementation for PHP and PSR-7",
+            "keywords": [
+                "PSR-11",
+                "ZendFramework",
+                "expressive",
+                "hal",
+                "http",
+                "psr",
+                "psr-13",
+                "psr-7",
+                "rest",
+                "zend-expressive",
+                "zf"
+            ],
+            "time": "2019-02-11T21:10:08+00:00"
+        },
+        {
             "name": "zendframework/zend-expressive-helpers",
             "version": "5.3.0",
             "source": {
@@ -2160,6 +2333,68 @@
                 "zf"
             ],
             "time": "2019-02-19T18:20:34+00:00"
+        },
+        {
+            "name": "zendframework/zend-hydrator",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-hydrator.git",
+                "reference": "f9987bfa25a89d6191e1dbb0413b3c35613f0271"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-hydrator/zipball/f9987bfa25a89d6191e1dbb0413b3c35613f0271",
+                "reference": "f9987bfa25a89d6191e1dbb0413b3c35613f0271",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2",
+                "zendframework/zend-stdlib": "^3.2.1"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "^1.7.5",
+                "phpstan/phpstan": "^0.10.5",
+                "phpunit/phpunit": "^7.5",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-eventmanager": "^3.2.1",
+                "zendframework/zend-modulemanager": "^2.8",
+                "zendframework/zend-serializer": "^2.9",
+                "zendframework/zend-servicemanager": "^3.3.2"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "^3.2, to support aggregate hydrator usage",
+                "zendframework/zend-serializer": "^2.9, to use the SerializableStrategy",
+                "zendframework/zend-servicemanager": "^3.3, to support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-release-2.4": "2.4.x-dev",
+                    "dev-master": "3.0.x-dev",
+                    "dev-develop": "3.1.x-dev"
+                },
+                "zf": {
+                    "component": "Zend\\Hydrator",
+                    "config-provider": "Zend\\Hydrator\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Hydrator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Serialize objects to arrays, and vice versa",
+            "keywords": [
+                "ZendFramework",
+                "hydrator",
+                "zf"
+            ],
+            "time": "2019-03-15T14:12:03+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",
