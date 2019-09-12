@@ -6,6 +6,7 @@ namespace Announcements\Handler;
 
 use Doctrine\ORM\EntityManager;
 use Psr\Container\ContainerInterface;
+use Zend\Expressive\Helper\UrlHelper;
 
 class AnnouncementsReadHandlerFactory
 {
@@ -13,6 +14,11 @@ class AnnouncementsReadHandlerFactory
     {
         $entityManager = $container->get(EntityManager::class);
 
-        return new AnnouncementsReadHandler($entityManager, $container->get('config')['page_size']);
+        $urlHelper = $container->get(UrlHelper::class);
+
+        return new AnnouncementsReadHandler(
+            $entityManager,
+            $container->get('config')['page_size'],
+            $urlHelper);
     }
 }
