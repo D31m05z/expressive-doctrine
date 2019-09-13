@@ -6,7 +6,6 @@ namespace Announcements\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/basic-mapping.html
  *
@@ -18,10 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Announcement
 {
     /**
-     * @var int
-     *
      * @ORM\Id
-     * @ORM\Column(type="integer", name="id", nullable=false, unique=true)
+     * @ORM\Column(type="integer", name="id", nullable=false)
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
@@ -35,6 +32,11 @@ class Announcement
      * @ORM\Column(type="string", nullable=false)
      */
     protected $content;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $is_admin;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
@@ -61,6 +63,7 @@ class Announcement
             'id' => $this->getId(),
             'sort' => $this->getSort(),
             'content' => $this->getContent(),
+            'is_admin' => $this->getIsAdmin(),
             'is_active' => $this->getIsActive(),
             'created' => $this->getCreated()->format('Y-m-d H:i:s'),
             'modified' => $this->getModified()->format('Y-m-d H:i:s')
@@ -77,11 +80,16 @@ class Announcement
         $this->setContent($requestBody['content']);
         $this->setModified(new \DateTime("now"));
 
-        if (!isset($requestBody['is_active']))
-        {
+        if (!isset($requestBody['is_active'])) {
             $this->setIsActive(1);
         } else {
             $this->setIsActive($requestBody['is_active']);
+        }
+
+        if (!isset($requestBody['is_admin'])) {
+            $this->setIsAdmin(0);
+        } else {
+            $this->setIsAdmin($requestBody['is_admin']);
         }
     }
 
@@ -123,6 +131,22 @@ class Announcement
     public function setContent(string $content): void
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsAdmin(): int
+    {
+        return $this->is_admin;
+    }
+
+    /**
+     * @param int $is_admin
+     */
+    public function setIsAdmin(int $is_admin): void
+    {
+        $this->is_admin = $is_admin;
     }
 
     /**

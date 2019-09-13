@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\Handler\NotFoundHandler;
+use Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware;
 use Zend\Expressive\Helper\ServerUrlMiddleware;
 use Zend\Expressive\Helper\UrlHelperMiddleware;
 use Zend\Expressive\MiddlewareFactory;
@@ -65,6 +66,9 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based authentication
     // - route-based validation
     // - etc.
+
+    // Append to allow parsing of BodyParams for PUT requests
+    $app->pipe(BodyParamsMiddleware::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

@@ -55,6 +55,7 @@ class ConfigProvider
             'factories'  => [
                 EntityManager::class => EntityManagerFactory::class,
                 Handler\AnnouncementsReadHandler::class => Handler\AnnouncementsReadHandlerFactory::class,
+                Handler\AnnouncementsCreateHandler::class => Handler\AnnouncementsCreateHandlerFactory::class,
             ],
         ];
     }
