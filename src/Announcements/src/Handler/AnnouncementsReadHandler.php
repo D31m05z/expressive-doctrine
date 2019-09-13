@@ -49,7 +49,6 @@ class AnnouncementsReadHandler implements RequestHandlerInterface
         $paginator = new AnnouncementCollection($query);
 
         $resource = $this->resourceGenerator->fromObject($paginator, $request);
-
         return $this->halResponseFactory->createResponse($request, $resource);
     }
 }
