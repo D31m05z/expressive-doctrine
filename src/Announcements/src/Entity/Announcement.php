@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Announcements\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/basic-mapping.html
@@ -17,9 +18,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Announcement
 {
     /**
+     * @var Uuid
+     *
      * @ORM\Id
-     * @ORM\Column(type="integer", name="id", nullable=false)
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     protected $id;
 
@@ -80,23 +84,23 @@ class Announcement
         $this->setContent($requestBody['content']);
         $this->setModified(new \DateTime("now"));
 
-        if (!isset($requestBody['is_active'])) {
-            $this->setIsActive(1);
-        } else {
-            $this->setIsActive($requestBody['is_active']);
-        }
-
         if (!isset($requestBody['is_admin'])) {
             $this->setIsAdmin(0);
         } else {
             $this->setIsAdmin($requestBody['is_admin']);
         }
+
+        if (!isset($requestBody['is_active'])) {
+            $this->setIsActive(1);
+        } else {
+            $this->setIsActive($requestBody['is_active']);
+        }
     }
 
     /**
-     * @return int
+     * @return Uuid
      */
-    public function getId(): int
+    public function getId(): Uuid
     {
         return $this->id;
     }

@@ -37,8 +37,9 @@
         "forum": "https://discourse.zendframework.com/c/questions/expressive"
     },
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "dasprid/container-interop-doctrine": "^1.1",
+        "ramsey/uuid-doctrine": "^1.5",
         "zendframework/zend-component-installer": "^2.1.1",
         "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-diactoros": "^1.7.1 || ^2.0",
